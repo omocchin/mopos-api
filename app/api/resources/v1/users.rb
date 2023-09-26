@@ -3,7 +3,11 @@ module Resources
     class Users < Grape::API
       resources :users do
         get do
-          pp 'test'
+          aaa = {
+            name: 'kyle'
+          }
+
+          present aaa, with: Entities::V1::UserEntity
         end
       end
     end
