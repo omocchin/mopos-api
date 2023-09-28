@@ -9,4 +9,10 @@ $ docker-compose run --rm web rails db:create
 $ docker-compose up
 
 Access rails console
-$ docker exec -it mipos-api-web-1 /bin/bash
+$ docker-compose exec web rails c
+
+Apply ridgepole
+$ docker-compose exec web bundle exec ridgepole -c config/database.yml -f db/Schemafile --apply 
+
+Create migration
+$ docker-compose exec web rails generate model <model_name> --no-migration

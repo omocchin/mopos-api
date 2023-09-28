@@ -1,0 +1,2 @@
+class ServiceChargeType < ApplicationRecord
+end
