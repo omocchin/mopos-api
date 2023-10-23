@@ -1,0 +1,2 @@
+class UserShift < ApplicationRecord
+end
