@@ -4,8 +4,15 @@ module Resources
       version 'v1'
       format :json
       content_type :json, 'application/json'
+
+      before {
+        authenticate! unless route.settings[:auth] && route.settings[:auth][:disabled]
+      }
+
+      helpers ::Helpers::V1::Helpers
   
-      mount Resources::V1::Users
+      mount Resources::V1::Aaa
+      mount Resources::V1::Login
     end
   end
 end
