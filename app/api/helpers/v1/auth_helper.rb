@@ -24,6 +24,11 @@ module Helpers
         user = User.find(decoded[0]['user_id'])
         company = Company.find(decoded[0]['company_id'])
         return  user, company
+
+      rescue JWT::DecodeError => e
+        unauthorized_error(I18n.t('error_message.unauthorized_error'))
+      rescue ActiveRecord::RecordNotFound => e
+        not_found_error(I18n.t('error_message.record_not_found', model: e.model))
       end
 
       def authenticate!
