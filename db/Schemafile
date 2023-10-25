@@ -82,6 +82,16 @@ create_table 'items', charset: 'utf8mb4', force: :cascade do |t|
   t.index [:item_category_id]
 end
 
+create_table 'user_histories', charset: 'utf8mb4', force: :cascade do |t|
+  t.bigint "user_id", null: false
+  t.string "token", limit: 500, null: false
+  t.datetime "login_time"
+  t.datetime "logout_time"
+  t.datetime "updated_at", null: false
+  t.datetime "created_at", null: false
+  t.index [:user_id]
+end
+
 add_foreign_key 'users', 'companies'
 add_foreign_key 'users', 'user_authorities'
 add_foreign_key 'pays', 'users'
@@ -91,3 +101,4 @@ add_foreign_key 'settings', 'companies'
 add_foreign_key 'settings', 'service_charge_types'
 add_foreign_key 'item_categories', 'companies'
 add_foreign_key 'items', 'item_categories'
+add_foreign_key 'user_histories', 'users'

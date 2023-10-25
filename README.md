@@ -14,5 +14,5 @@ $ docker-compose exec web rails c
 Apply ridgepole
 $ docker-compose exec web bundle exec ridgepole -c config/database.yml -f db/Schemafile --apply 
 
-Create migration
+Generate model
 $ docker-compose exec web rails generate model <model_name> --no-migration

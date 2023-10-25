@@ -10,8 +10,8 @@ module Resources
         end
         post do
           user = User.find_by(login_id: params[:login_id])
-          user.login
           token = create_token(user)
+          user.login(token)
           data = {
             name: user.full_name,
             company_name: user.company.name,
@@ -20,6 +20,9 @@ module Resources
           }
 
           present data, with: Entities::V1::LoginEntity
+
+        rescue ActiveRecord::RecordInvalid => e
+          conflict_error(I18n.t('error_message.failed_to_save'))
         end
       end
     end
