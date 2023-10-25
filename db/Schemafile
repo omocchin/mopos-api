@@ -18,6 +18,7 @@ create_table 'users', charset: 'utf8mb4', force: :cascade do |t|
   t.bigint "user_authority_id", null: false
   t.string "login_id", null: false
   t.string "password_digest", null: false
+  t.integer "status", null: false, default: 0, comment: "0: logged-out, 1: logged-in"
   t.string "first_name", null: false
   t.string "last_name", null: false
   t.string "tel"

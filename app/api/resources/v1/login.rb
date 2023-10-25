@@ -10,6 +10,7 @@ module Resources
         end
         post do
           user = User.find_by(login_id: params[:login_id])
+          user.login
           token = create_token(user)
           data = {
             name: user.full_name,

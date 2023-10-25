@@ -4,7 +4,7 @@ module Entities
       expose :name
       expose :company_name
       expose :token
-      expose :aithority
+      expose :authority
     end
   end
 end
