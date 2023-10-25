@@ -1,2 +1,0 @@
-class UserAttendance < ApplicationRecord
-end

@@ -1,13 +1,13 @@
 module Resources
   module V1
-    class Users < Grape::API
-      resources :users do
+    class Aaa < Grape::API
+      resources :aaa do
         get do
           aaa = {
             name: 'kyle'
           }
 
-          present aaa, with: Entities::V1::UserEntity
+          # present aaa, with: Entities::V1::UserEntity
         end
       end
     end

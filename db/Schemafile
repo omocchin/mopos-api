@@ -18,6 +18,7 @@ create_table 'users', charset: 'utf8mb4', force: :cascade do |t|
   t.bigint "user_authority_id", null: false
   t.string "login_id", null: false
   t.string "password_digest", null: false
+  t.integer "status", null: false, default: 0, comment: "0: logged-out, 1: logged-in"
   t.string "first_name", null: false
   t.string "last_name", null: false
   t.string "tel"
@@ -36,7 +37,7 @@ create_table 'pays', charset: 'utf8mb4', force: :cascade do |t|
   t.index [:user_id]
 end
 
-create_table 'user_attendances', charset: 'utf8mb4', force: :cascade do |t|
+create_table 'user_shifts', charset: 'utf8mb4', force: :cascade do |t|
   t.bigint "user_id", null: false
   t.bigint "pay_id", null: false
   t.datetime "clock_in"
@@ -84,8 +85,8 @@ end
 add_foreign_key 'users', 'companies'
 add_foreign_key 'users', 'user_authorities'
 add_foreign_key 'pays', 'users'
-add_foreign_key 'user_attendances', 'users'
-add_foreign_key 'user_attendances', 'pays'
+add_foreign_key 'user_shifts', 'users'
+add_foreign_key 'user_shifts', 'pays'
 add_foreign_key 'settings', 'companies'
 add_foreign_key 'settings', 'service_charge_types'
 add_foreign_key 'item_categories', 'companies'
