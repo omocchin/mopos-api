@@ -26,4 +26,8 @@ class UserHistory < ApplicationRecord
     self.login_time = Time.zone.now
     self.save!
   end
+
+  def current_token?(token)
+    raise Exceptions::NotCurrentToken unless self.token == token
+  end
 end

@@ -23,10 +23,13 @@ module Helpers
         decoded = JWT.decode(token, ENV['SECRET_KEY'], true)
         user = User.find(decoded[0]['user_id'])
         company = Company.find(decoded[0]['company_id'])
+        user.user_histories.last.current_token?(token)
         return  user, company
 
+      rescue Exceptions::NotCurrentToken => e
+        forbidden_error(I18n.t('error_message.token_not_current'))
       rescue JWT::DecodeError => e
-        unauthorized_error(I18n.t('error_message.unauthorized_error'))
+        forbidden_error(I18n.t('error_message.forbidden_error'))
       rescue ActiveRecord::RecordNotFound => e
         not_found_error(I18n.t('error_message.record_not_found', model: e.model))
       end

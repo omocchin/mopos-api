@@ -1,8 +1,8 @@
 module Helpers
   module V1
     module ErrorHelper
-      def unauthorized_error(message)
-        error!({error: I18n.t('error_type.unauthorized_error'), message: message}, 401)
+      def forbidden_error(message)
+        error!({error: I18n.t('error_type.forbidden_error'), message: message}, 403)
       end
 
       def not_found_error(message)
