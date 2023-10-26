@@ -13,6 +13,7 @@ module Resources
   
       mount Resources::V1::Aaa
       mount Resources::V1::Login
+      mount Resources::V1::Logout
     end
   end
 end

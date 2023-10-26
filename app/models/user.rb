@@ -44,4 +44,10 @@ class User < ApplicationRecord
     self.user_histories.new.login_history(token)
     self.save!
   end
+
+  def logout
+    self.status = User.statuses[:logged_out]
+    self.user_histories.last.logout_history
+    self.save!
+  end
 end
