@@ -1,10 +1,16 @@
 module Entities
   module V1
     class LoginEntity < Grape::Entity
-      expose :name
-      expose :company_name
-      expose :token
-      expose :authority
+      class CompanyLogin < Grape::Entity
+        expose :company_name
+        expose :token
+      end
+
+      class UserLogin < Grape::Entity
+        expose :name
+        expose :token
+        expose :authority
+      end
     end
   end
 end

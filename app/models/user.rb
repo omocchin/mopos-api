@@ -26,7 +26,6 @@
 #  fk_rails_...  (user_authority_id => user_authorities.id)
 #
 class User < ApplicationRecord
-  include ActiveModel::SecurePassword
   has_secure_password
 
   belongs_to :company
@@ -36,7 +35,7 @@ class User < ApplicationRecord
   enum :status, { logged_out: 0, logged_in: 1 }
 
   def full_name
-    self.first_name + self.last_name
+    self.first_name + ' ' + self.last_name
   end
 
   def login(token)
