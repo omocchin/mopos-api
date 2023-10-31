@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: company_histories
+#
+#  id          :bigint           not null, primary key
+#  login_time  :datetime
+#  logout_time :datetime
+#  token       :string(500)      not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  company_id  :bigint           not null
+#
+# Indexes
+#
+#  index_company_histories_on_company_id  (company_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (company_id => companies.id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value
