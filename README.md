@@ -1,7 +1,7 @@
 # README
 
-The backend for a POS System called "mipos".
-This is a SaaS web application that will have a capability of a POS System, shift management, and employee pay management.
+The backend for a POS System called "mipos".<br>
+This is a SaaS web application that will have a capability of a POS System, shift management, and employee pay management.<br>
 Still in progress of building the backend of the web application.
 
 Steps of installation
