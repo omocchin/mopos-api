@@ -21,7 +21,8 @@ create_table 'users', charset: 'utf8mb4', force: :cascade do |t|
   t.bigint "user_authority_id", null: false
   t.string "login_id", null: false
   t.string "password_digest", null: false
-  t.integer "status", null: false, default: 0, comment: "0: logged-out, 1: logged-in"
+  t.bigint "user_number", null: false
+  t.integer "status", null: false, default: 0, comment: "0: clocked-out, 1: clocked-in"
   t.string "first_name", null: false
   t.string "last_name", null: false
   t.string "tel"
@@ -44,7 +45,7 @@ create_table 'user_shifts', charset: 'utf8mb4', force: :cascade do |t|
   t.bigint "user_id", null: false
   t.bigint "pay_id", null: false
   t.datetime "clock_in"
-  t.datetime "cloack_out"
+  t.datetime "clock_out"
   t.datetime "updated_at", null: false
   t.datetime "created_at", null: false
   t.index [:user_id]

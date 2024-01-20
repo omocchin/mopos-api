@@ -44,6 +44,7 @@ module Resources
             company.login(token)
           end
           data = {
+            company_id: company.company_unique_id,
             company_name: company.name,
             token: token
           }

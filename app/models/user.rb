@@ -30,23 +30,37 @@ class User < ApplicationRecord
 
   belongs_to :company
   belongs_to :user_authority
+  has_one :pay
   has_many :user_histories, dependent: :destroy
+  has_many :user_shifts
 
-  enum :status, { logged_out: 0, logged_in: 1 }
+  enum :status, { clocked_out: 0, clocked_in: 1 }
 
   def full_name
     self.first_name + ' ' + self.last_name
   end
 
   def login(token)
-    self.status = User.statuses[:logged_in]
+    # self.status = User.statuses[:clocked_out]
     self.user_histories.new.login_history(token)
     self.save!
   end
 
   def logout
-    self.status = User.statuses[:logged_out]
+    # self.status = User.statuses[:clocked_in]
     self.user_histories.last.logout_history
     self.save!
+  end
+
+  def clock_in_out
+    shift = self.user_shifts.last
+    if !shift || shift.clock_out.present?
+      self.user_shifts.create(pay_id: self.pay.id, clock_in: Time.zone.now)
+      self.update(status: User.statuses[:clocked_in])
+    else
+      shift.update(clock_out: Time.zone.now)
+      self.update(status: User.statuses[:clocked_out])
+    end
+    return shift
   end
 end
