@@ -3,6 +3,7 @@ module Helpers
     module Helpers
       include AuthHelper
       include ErrorHelper
+      include TimeHelper 
     end
   end
 end

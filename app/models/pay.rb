@@ -17,4 +17,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Pay < ApplicationRecord
+  belongs_to :user
+  has_many :user_shifts
 end

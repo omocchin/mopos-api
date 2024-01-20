@@ -14,6 +14,7 @@ module Resources
       mount Resources::V1::Aaa
       mount Resources::V1::Login
       mount Resources::V1::Logout
+      mount Resources::V1::User
     end
   end
 end

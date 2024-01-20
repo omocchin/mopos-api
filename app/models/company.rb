@@ -16,6 +16,7 @@ class Company < ApplicationRecord
   has_secure_password
 
   has_many :company_histories, dependent: :destroy
+  has_many :users, dependent: :destroy
 
   enum :status, { logged_out: 0, logged_in: 1 }
 

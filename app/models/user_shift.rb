@@ -21,4 +21,5 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class UserShift < ApplicationRecord
+  belongs_to :pay
 end
