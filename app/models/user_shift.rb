@@ -22,4 +22,5 @@
 #
 class UserShift < ApplicationRecord
   belongs_to :pay
+  belongs_to :user
 end

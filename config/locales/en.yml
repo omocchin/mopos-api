@@ -42,3 +42,4 @@ en:
     token_not_current: 'Authentication failed due to token not being current.'
     user_not_found: 'User not found.'
     company_not_found: 'Company not found.'
+    duplicate_entree: '%{model} already exists.'

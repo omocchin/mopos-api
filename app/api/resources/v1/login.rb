@@ -1,14 +1,14 @@
 module Resources
   module V1
     class Login < Grape::API
-      resources :login do
-        desc 'Login'
+      resources :user_login do
+        desc 'user login'
         params do
-          requires :login_id, type: String
+          requires :user_number, type: String
           requires :password, type: String
         end
         post do
-          user = User.find_by(login_id: params[:login_id])&.authenticate(params[:password])  
+          user = @company.users.find_by(user_number: params[:user_number])&.authenticate(params[:password])  
           raise Exceptions::UserNotFound unless user
           token = create_user_token(user)
           ActiveRecord::Base.transaction do
@@ -44,9 +44,10 @@ module Resources
             company.login(token)
           end
           data = {
-            company_id: company.company_unique_id,
+            company_id: company.company_uuid,
             company_name: company.name,
-            token: token
+            token: token,
+            active_users: company.active_company_users
           }
 
           present data, with: Entities::V1::LoginEntity::CompanyLogin

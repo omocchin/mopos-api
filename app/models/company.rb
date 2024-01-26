@@ -13,6 +13,7 @@
 #  login_id          :string(255)      not null
 #
 class Company < ApplicationRecord
+  include UuidGenerator
   has_secure_password
 
   has_many :company_histories, dependent: :destroy
@@ -24,5 +25,29 @@ class Company < ApplicationRecord
     self.status = Company.statuses[:logged_in]
     self.company_histories.new.login_history(token)
     self.save!
+  end
+
+  def logout(token)
+    self.status = Company.statuses[:logged_out]
+    self.company_histories.find_by(token: token).logout_history
+    self.save!
+  end
+
+  def active_company_users
+    self.users.select(:id, :user_number, :first_name, :last_name).map do |user|
+      shift = user.user_shifts.last
+      next if shift.clock_out
+      user
+    end.compact
+  end
+
+  def self.create_company_user(user_info)
+    company_uuid = ''
+    while !company_uuid.present? do
+      uuid = generate_uuid
+      company_uuid = uuid unless Company.find_by(company_uuid: uuid).present?
+    end
+    user_info[:company_uuid] = company_uuid
+    Company.create!(user_info)
   end
 end

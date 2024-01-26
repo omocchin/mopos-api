@@ -27,6 +27,11 @@ class CompanyHistory < ApplicationRecord
     self.save!
   end
 
+  def logout_history
+    self.logout_time = Time.zone.now
+    self.save!
+  end
+
   def current_token?(token)
     raise Exceptions::NotCurrentToken unless self.token == token
   end

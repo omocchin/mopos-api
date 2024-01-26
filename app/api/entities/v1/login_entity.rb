@@ -5,6 +5,7 @@ module Entities
         expose :company_id
         expose :company_name
         expose :token
+        expose :active_users
       end
 
       class UserLogin < Grape::Entity

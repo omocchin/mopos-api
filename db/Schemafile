@@ -1,5 +1,5 @@
 create_table 'companies', charset: 'utf8mb4', force: :cascade do |t|
-  t.string "company_unique_id", null: false
+  t.string "company_uuid", null: false
   t.string "login_id", null: false
   t.string "password_digest", null: false
   t.integer "status", null: false, default: 0, comment: "0: logged-out, 1: logged-in"
@@ -8,6 +8,7 @@ create_table 'companies', charset: 'utf8mb4', force: :cascade do |t|
   t.string "tel", null: false
   t.datetime "updated_at", null: false
   t.datetime "created_at", null: false
+  t.index [:login_id], unique: true
 end
 
 create_table 'user_authorities', charset: 'utf8mb4', force: :cascade do |t|

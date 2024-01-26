@@ -1,4 +1,4 @@
-company = Company.create(company_unique_id: 'abcd1234', login_id: 'mipos', name: 'Mipos Co.', password: 'aaaaaaaa', email: 'test@example.com', tel: '1111111111')
+company = Company.create(company_uuid: 'abcd1234', login_id: 'mipos', name: 'Mipos Co.', password: 'aaaaaaaa', email: 'test@example.com', tel: '1111111111')
 
 authority = UserAuthority.create(name: 'master')
 
