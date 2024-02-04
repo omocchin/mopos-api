@@ -24,6 +24,14 @@ module Resources
 					not_found_error(I18n.t('error_message.record_not_found', model: e.model))
 				end
 			end
+
+			resources :users do
+				desc 'all users'
+				get do
+					users = @company.users
+					present users, with: Entities::V1::UserEntity::Users
+				end
+			end
 		end
 	end
 end
