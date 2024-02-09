@@ -3,7 +3,8 @@ module Resources
 		class CompanyUser < Grape::API
 			resources :company_user do
 				desc 'create company user'
-        route_setting :auth, disabled: true
+        route_setting :company_auth, disabled: true
+				route_setting :user_auth, disabled: true
 				params do
 					requires :name
           requires :email

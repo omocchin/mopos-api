@@ -36,6 +36,12 @@ class User < ApplicationRecord
 
   enum :status, { clocked_out: 0, clocked_in: 1 }
 
+  scope :search_user, ->(keyword) { 
+    where('first_name LIKE ?',  "%#{keyword}%")
+    .or(where('last_name LIKE ?', "%#{keyword}%"))
+    .or(where('user_number LIKE ?', "%#{keyword}%"))
+  }
+
   def full_name
     self.first_name + ' ' + self.last_name
   end

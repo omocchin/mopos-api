@@ -3,6 +3,7 @@ module Resources
 		class User < Grape::API
 			resources :user do
 				desc 'clock in'
+				route_setting :user_auth, disabled: true
 				params do
 					requires :user_number
 				end
@@ -27,9 +28,22 @@ module Resources
 
 			resources :users do
 				desc 'all users'
+				params do
+          requires :page, type: Integer
+          requires :per_page, type: Integer
+					optional :keyword, type: String
+					optional :user_status, type: String
+        end
 				get do
-					users = @company.users
-					present users, with: Entities::V1::UserEntity::Users
+					users = @company.users.page(params[:page]).per(params[:per_page])
+					users = users.search_user(params[:keyword]) if params[:keyword]
+					users = users.where(status: ::User.statuses[params[:user_status]]) if params[:user_status]
+					res = {
+						current_page: users.current_page,
+						total_pages: users.total_pages,
+						users: users
+					}
+					present res, with: Entities::V1::UserEntity::Users
 				end
 			end
 		end

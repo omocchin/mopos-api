@@ -6,7 +6,8 @@ module Resources
       content_type :json, 'application/json'
 
       before {
-        authenticate! unless route.settings[:auth] && route.settings[:auth][:disabled]
+        company_authenticate! unless route.settings[:company_auth] && route.settings[:company_auth][:disabled]
+        user_authenticate! unless route.settings[:user_auth] && route.settings[:user_auth][:disabled]
       }
 
       helpers ::Helpers::V1::Helpers

@@ -3,6 +3,7 @@ module Resources
     class Login < Grape::API
       resources :user_login do
         desc 'user login'
+        route_setting :user_auth, disabled: true
         params do
           requires :user_number, type: String
           requires :password, type: String
@@ -31,7 +32,8 @@ module Resources
 
       resources :company_login do
         desc 'company login'
-        route_setting :auth, disabled: true
+        route_setting :company_auth, disabled: true
+				route_setting :user_auth, disabled: true
         params do
           requires :login_id, type: String
           requires :password, type: String

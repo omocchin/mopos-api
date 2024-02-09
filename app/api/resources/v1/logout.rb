@@ -12,6 +12,7 @@ module Resources
 
       resources :company_logout do
         desc 'Company Logout'
+        route_setting :user_auth, disabled: true
         post do
           token = headers['Authorization'].split(' ').last
           ActiveRecord::Base.transaction do
