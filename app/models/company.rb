@@ -13,7 +13,7 @@
 #  login_id          :string(255)      not null
 #
 class Company < ApplicationRecord
-  include UuidGenerator
+  include RandomGenerator
   has_secure_password
 
   has_many :company_histories, dependent: :destroy
@@ -36,7 +36,7 @@ class Company < ApplicationRecord
   def active_company_users
     self.users.select(:id, :user_number, :first_name, :last_name).map do |user|
       shift = user.user_shifts.last
-      next if shift.clock_out
+      next if shift.blank? || shift.clock_out
       user
     end.compact
   end

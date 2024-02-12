@@ -69,4 +69,18 @@ class User < ApplicationRecord
     end
     return shift
   end
+
+  def create_user(user_info)
+    self.update!(
+      first_name: user_info[:first_name],
+      last_name: user_info[:last_name],
+      login_id: user_info[:login_id],
+      password: user_info[:password],
+      user_number: user_info[:user_number],
+      user_authority_id: user_info[:user_authority],
+      email: user_info[:email] ? user_info[:email] : nil,
+      tel: user_info[:tel] ? user_info[:tel] : nil
+    )
+    pay = self.build_pay.update!(hourly_rate: user_info[:pay])
+  end
 end

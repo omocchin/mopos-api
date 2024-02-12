@@ -24,6 +24,33 @@ module Resources
 				rescue ActiveRecord::RecordNotFound => e
 					not_found_error(I18n.t('error_message.record_not_found', model: e.model))
 				end
+
+				desc "create user"
+				params do
+					requires :first_name, type: String
+					requires :last_name, type: String
+					requires :login_id, type: String
+					requires :password, type: String
+					requires :password_confirmation, type: String, same_as: { value: :password, message: 'Password not match'}
+					requires :user_authority, type: Integer
+					requires :pay, type: BigDecimal
+					optional :user_number, type: Integer
+					optional :email, type: String, regexp: /.+@.+/
+					optional :tel, type: String
+				end
+				post :create do
+					raise Exceptions::DuplicateEntree.new('Login ID is already taken', 'login_id') if ::User.find_by(login_id: params[:login_id])
+					raise Exceptions::DuplicateEntree.new('User number is already taken', 'user_number') if ::User.find_by(user_number: params[:user_number])
+					ActiveRecord::Base.transaction do
+						user = @company.users.new
+						user.create_user(declared(params))
+					end
+					status 201
+				rescue Exceptions::DuplicateEntree => e
+					unprocessable_content_error(e.message, e.model)
+				rescue ActiveRecord::RecordInvalid => e
+					conflict_error(e.message)
+				end
 			end
 
 			resources :users do

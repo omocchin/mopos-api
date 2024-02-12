@@ -20,7 +20,7 @@ end
 create_table 'users', charset: 'utf8mb4', force: :cascade do |t|
   t.bigint "company_id", null: false
   t.bigint "user_authority_id", null: false
-  t.string "login_id", null: false
+  t.string "login_id", null: false, unique: true
   t.string "password_digest", null: false
   t.bigint "user_number", null: false
   t.integer "status", null: false, default: 0, comment: "0: clocked-out, 1: clocked-in"

@@ -34,6 +34,7 @@ en:
     forbidden_error: 'Forbidden error'
     not_found_error: 'Not found error'
     conflict_error: 'Conflict error'
+    unprocessable_content_error: 'Unprocessable content error'
   error_message:
     forbidden_error: 'Authentication has failed.'
     not_found_error: 'Record not found.'

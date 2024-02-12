@@ -1,4 +1,4 @@
-module UuidGenerator
+module RandomGenerator
   extend ActiveSupport::Concern
 
   included do
