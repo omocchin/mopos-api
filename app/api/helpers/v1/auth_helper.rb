@@ -60,7 +60,6 @@ module Helpers
       end
 
       def company_authenticate!
-        pp 'token'
         pp request.headers['Authorization']
         tokens = request.headers['Authorization'].split(', ')
         company_token = tokens[0].split(' ').last
