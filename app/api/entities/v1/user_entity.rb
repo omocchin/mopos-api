@@ -28,6 +28,20 @@ module Entities
         expose :total_pages
         expose :users, using: User
       end
+
+      class EditUser < Grape::Entity
+        expose :first_name
+        expose :last_name
+        expose :login_id
+        expose :user_authority_id
+        expose :pay do |user|
+          user.pay.hourly_rate
+        end
+        expose :email
+        expose :tel
+        expose :user_number
+        expose :status
+      end
     end
   end
 end

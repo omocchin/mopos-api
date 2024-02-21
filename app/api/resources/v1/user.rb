@@ -51,6 +51,18 @@ module Resources
 				rescue ActiveRecord::RecordInvalid => e
 					conflict_error(e.message)
 				end
+
+				desc 'get user'
+				params do
+					requires :id, type: String
+				end
+				get ':id' do
+					user = @company.users.find(params[:id])
+
+					present user, with: Entities::V1::UserEntity::EditUser
+				rescue ActiveRecord::RecordNotFound => e
+					not_found_error(I18n.t('error_message.record_not_found', model: 'User'))
+				end
 			end
 
 			resources :users do
