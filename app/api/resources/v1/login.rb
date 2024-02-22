@@ -5,11 +5,11 @@ module Resources
         desc 'user login'
         route_setting :user_auth, disabled: true
         params do
-          requires :user_number, type: String
+          requires :login_id, type: String
           requires :password, type: String
         end
         post do
-          user = @company.users.find_by(user_number: params[:user_number])&.authenticate(params[:password])  
+          user = @company.users.find_by(login_id: params[:login_id])&.authenticate(params[:password])  
           raise Exceptions::UserNotFound unless user
           token = create_user_token(user)
           ActiveRecord::Base.transaction do

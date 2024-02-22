@@ -30,9 +30,9 @@ class User < ApplicationRecord
 
   belongs_to :company
   belongs_to :user_authority
-  has_one :pay
+  has_one :pay, dependent: :destroy
   has_many :user_histories, dependent: :destroy
-  has_many :user_shifts
+  has_many :user_shifts, dependent: :destroy
 
   enum :status, { clocked_out: 0, clocked_in: 1 }
 
@@ -82,5 +82,18 @@ class User < ApplicationRecord
       tel: user_info[:tel] ? user_info[:tel] : nil
     )
     pay = self.build_pay.update!(hourly_rate: user_info[:pay])
+  end
+
+  def edit_user(user_info)
+    self.update!(
+      first_name: user_info[:first_name],
+      last_name: user_info[:last_name],
+      login_id: user_info[:login_id],
+      user_number: user_info[:user_number],
+      user_authority_id: user_info[:user_authority],
+      email: user_info[:email],
+      tel: user_info[:tel]
+    )
+    pay = self.pay.update!(hourly_rate: user_info[:pay])
   end
 end
