@@ -34,11 +34,14 @@ module Helpers
       def decode_company_token(company_token)
         decoded_company = JWT.decode(company_token, ENV['SECRET_KEY'], true)
         company = Company.find(decoded_company[0]['company_id'])
-        company.company_histories.last.current_token?(company_token)
+        # company.company_histories.last.current_token?(company_token)
+        company.token_available?(company_token)
         return company
 
-      rescue Exceptions::NotCurrentToken => e
-        forbidden_error(I18n.t('error_message.token_not_current'))
+      # rescue Exceptions::NotCurrentToken => e
+      #   forbidden_error(I18n.t('error_message.token_not_current'))
+      rescue Exceptions::TokenUnavailable => e
+        forbidden_error(I18n.t('error_message.token_unavailable'))
       rescue JWT::DecodeError => e
         forbidden_error(I18n.t('error_message.forbidden_error'))
       rescue ActiveRecord::RecordNotFound => e
@@ -48,26 +51,29 @@ module Helpers
       def decode_user_token(user_token)
         decoded_user = JWT.decode(user_token, ENV['SECRET_KEY'], true)
         user = User.find(decoded_user[0]['user_id'])
-        user.user_histories.last.current_token?(user_token)
+        # user.user_histories.last.current_token?(user_token)
+        user.token_available?(user_token)
         return user
 
-      rescue Exceptions::NotCurrentToken => e
-        forbidden_error(I18n.t('error_message.token_not_current'))
+      # rescue Exceptions::NotCurrentToken => e
+      #   forbidden_error(I18n.t('error_message.token_not_current'))
+      rescue Exceptions::TokenUnavailable => e
+        forbidden_error(I18n.t('error_message.token_unavailable'))  
       rescue JWT::DecodeError => e
-        forbidden_error(I18n.t('error_message.forbidden_error'))
+          forbidden_error(I18n.t('error_message.forbidden_error'))
       rescue ActiveRecord::RecordNotFound => e
         not_found_error(I18n.t('error_message.record_not_found', model: e.model))
       end
 
       def company_authenticate!
-        pp request.headers['Authorization']
+        pp 'aaa'
         tokens = request.headers['Authorization'].split(', ')
         company_token = tokens[0].split(' ').last
-        pp company_token
         @company = decode_company_token(company_token)
       end
 
       def user_authenticate!
+        pp 'bbb'
         tokens = request.headers['Authorization'].split(', ')
         user_token = tokens[1]&.split(' ')&.last
         @user = decode_user_token(user_token)

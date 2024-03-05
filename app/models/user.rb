@@ -96,4 +96,9 @@ class User < ApplicationRecord
     )
     pay = self.pay.update!(hourly_rate: user_info[:pay])
   end
+
+  def token_available?(token)
+    history = self.user_histories.find_by(token: token)
+    raise Exceptions::TokenUnavailable if history.logout_time.present?
+  end
 end

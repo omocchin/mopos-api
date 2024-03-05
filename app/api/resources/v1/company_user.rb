@@ -19,6 +19,12 @@ module Resources
 				rescue ActiveRecord::RecordNotUnique => e
 					conflict_error(I18n.t('error_message.duplicate_entree', model: 'login id'))
 				end
+
+				desc 'authenticate company user'
+				route_setting :user_auth, disabled: true
+				get :authenticate do
+					status 200
+				end
 			end
 		end
 	end

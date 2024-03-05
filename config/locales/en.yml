@@ -44,3 +44,4 @@ en:
     user_not_found: 'User not found.'
     company_not_found: 'Company not found.'
     duplicate_entree: '%{model} already exists.'
+    token_unavailable: 'Token is unavailable.'

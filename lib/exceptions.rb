@@ -1,5 +1,6 @@
 module Exceptions
   class NotCurrentToken < StandardError; end
+  class TokenUnavailable < StandardError; end
   class UserNotFound < StandardError; end
   class CompanyNotFound < StandardError; end
   class DuplicateEntree < StandardError

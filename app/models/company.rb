@@ -50,4 +50,9 @@ class Company < ApplicationRecord
     user_info[:company_uuid] = company_uuid
     Company.create!(user_info)
   end
+
+  def token_available?(token)
+    history = self.company_histories.find_by(token: token)
+    raise Exceptions::TokenUnavailable if history.logout_time.present?
+  end
 end

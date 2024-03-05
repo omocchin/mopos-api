@@ -25,6 +25,12 @@ module Resources
 					not_found_error(I18n.t('error_message.record_not_found', model: e.model))
 				end
 
+				desc 'authenticate user'
+				route_setting :company_auth, disabled: true
+				get :authenticate do
+					status 200
+				end
+
 				desc "create user"
 				params do
 					requires :first_name, type: String

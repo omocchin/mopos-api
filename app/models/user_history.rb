@@ -32,7 +32,7 @@ class UserHistory < ApplicationRecord
     self.save!
   end
 
-  def current_token?(token)
-    raise Exceptions::NotCurrentToken unless self.token == token
-  end
+  # def current_token?(token)
+  #   raise Exceptions::NotCurrentToken unless self.token == token
+  # end
 end
