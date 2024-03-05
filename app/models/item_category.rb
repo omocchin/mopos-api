@@ -17,4 +17,15 @@
 #  fk_rails_...  (company_id => companies.id)
 #
 class ItemCategory < ApplicationRecord
+  has_many :items, dependent: :destroy
+  belongs_to :company
+
+  scope :search_categories, -> (category_id) {
+    where(id: category_id) if category_id && !category_id.empty?
+  }
+
+  def create_category(name)
+    self.update(name: name)
+    self
+  end
 end
