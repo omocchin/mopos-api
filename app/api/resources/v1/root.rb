@@ -12,11 +12,11 @@ module Resources
 
       helpers ::Helpers::V1::Helpers
   
-      mount Resources::V1::Aaa
       mount Resources::V1::Login
       mount Resources::V1::Logout
       mount Resources::V1::User
       mount Resources::V1::CompanyUser
+      mount Resources::V1::Item
     end
   end
 end
