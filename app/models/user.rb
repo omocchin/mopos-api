@@ -52,9 +52,9 @@ class User < ApplicationRecord
     self.save!
   end
 
-  def logout
+  def logout(token)
     # self.status = User.statuses[:clocked_in]
-    self.user_histories.last.logout_history
+    self.user_histories.find_by(token: token).logout_history
     self.save!
   end
 

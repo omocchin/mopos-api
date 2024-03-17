@@ -66,15 +66,13 @@ module Helpers
       end
 
       def company_authenticate!
-        pp 'aaa'
-        tokens = request.headers['Authorization'].split(', ')
+        tokens = request.headers['Authorization'].split(',')
         company_token = tokens[0].split(' ').last
         @company = decode_company_token(company_token)
       end
 
       def user_authenticate!
-        pp 'bbb'
-        tokens = request.headers['Authorization'].split(', ')
+        tokens = request.headers['Authorization'].split(',')
         user_token = tokens[1]&.split(' ')&.last
         @user = decode_user_token(user_token)
       end

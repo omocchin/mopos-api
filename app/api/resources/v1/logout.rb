@@ -4,7 +4,11 @@ module Resources
       resources :logout do
         desc 'Logout'
         post do
-          @user.logout
+          tokens = request.headers['Authorization'].split(', ')
+          user_token = tokens[1]&.split(' ')&.last
+          ActiveRecord::Base.transaction do
+            @user.logout(user_token)
+          end
 
           status 201
         end
@@ -14,9 +18,10 @@ module Resources
         desc 'Company Logout'
         route_setting :user_auth, disabled: true
         post do
-          token = headers['Authorization'].split(' ').last
+          tokens = request.headers['Authorization'].split(',')
+          company_token = tokens[0]&.split(' ')&.last
           ActiveRecord::Base.transaction do
-            @company.logout(token)
+            @company.logout(company_token)
           end
 
           status 201
