@@ -19,6 +19,7 @@ class Company < ApplicationRecord
   has_many :company_histories, dependent: :destroy
   has_many :users, dependent: :destroy
   has_many :item_categories, dependent: :destroy
+  has_one :setting, dependent: :destroy
 
   enum :status, { logged_out: 0, logged_in: 1 }
 

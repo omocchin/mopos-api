@@ -61,8 +61,8 @@ end
 
 create_table 'settings', charset: 'utf8mb4', force: :cascade do |t|
   t.bigint "company_id", null: false
-  t.bigint "service_charge_type_id", null: false
-  t.decimal "tax", precision: 50,  scale: 2
+  t.bigint "service_charge_type_id"
+  t.string "tax"
   t.integer "service_charge_amount"
   t.datetime "updated_at", null: false
   t.datetime "created_at", null: false

@@ -25,6 +25,14 @@ module Resources
 				get :authenticate do
 					status 200
 				end
+
+				desc 'get company setting'
+				route_setting :user_auth, disabled: true
+				get :settings do
+					settings = @company.setting
+					
+					present settings, with: Entities::V1::CompanyUserEntity::Settings
+				end
 			end
 		end
 	end

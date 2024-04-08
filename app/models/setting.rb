@@ -21,4 +21,5 @@
 #  fk_rails_...  (service_charge_type_id => service_charge_types.id)
 #
 class Setting < ApplicationRecord
+  belongs_to :company
 end
