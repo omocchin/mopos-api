@@ -1,8 +1,9 @@
 # README
 
 The backend for a POS System called "mopos".<br>
-This is a SaaS web application that will have a capability of a POS System, shift management, and employee pay management.<br>
-Still in progress of building the backend of the web application.
+This is a SaaS web application that will have a capability of a POS System, employee's shift management, and employee pay management.<br>
+It is a server side of the web application using, Ruby on Rails with rails grape gem.<br>
+Still in progress of building the web application.
 
 Frontend of the web application below.<br>
 Also still in progress of development.<br>
