@@ -19,4 +19,20 @@ module Exceptions
       @model = model
     end
   end
+  class ClientError < StandardError
+    attr_reader :status
+
+    def initialize(message, status)
+      super(message)
+      @status = status
+    end
+  end
+  class ServerError < StandardError
+    attr_reader :status
+
+    def initialize(message, status)
+      super(message)
+      @status = status
+    end
+  end
 end

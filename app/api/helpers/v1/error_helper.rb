@@ -16,6 +16,14 @@ module Helpers
       def unprocessable_content_error(message, model=nil)
         error!({error: I18n.t('error_type.unprocessable_content_error'), message: message, model: model}, 422)
       end
+
+      def request_api_client_error(message, status)
+        error!({error: I18n.t('error_type.client_error'), message: message, status: status}, 400)
+      end
+
+      def request_api_server_error(message, status)
+        error!({error: I18n.t('error_type.server_error'), message: message, status: status}, 500)
+      end
     end
   end
 end

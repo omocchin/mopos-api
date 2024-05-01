@@ -1,0 +1,21 @@
+defaults: &defaults
+  requests:
+    headers:
+      application_json: "application/json"
+      www_form: "application/x-www-form-urlencoded"
+    api:
+      paypal:
+        url:
+          base_url: "https://api-m.sandbox.paypal.com"
+          paths:
+            auth: "/v1/oauth2/token"
+            create_order: "/v2/checkout/orders"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

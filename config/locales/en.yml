@@ -35,6 +35,8 @@ en:
     not_found_error: 'Not found error'
     conflict_error: 'Conflict error'
     unprocessable_content_error: 'Unprocessable content error'
+    client_error: 'Client error'
+    server_error: 'Server error'
   error_message:
     forbidden_error: 'Authentication has failed.'
     not_found_error: 'Record not found.'

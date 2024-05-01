@@ -109,6 +109,68 @@ create_table 'company_histories', charset: 'utf8mb4', force: :cascade do |t|
   t.index [:company_id]
 end
 
+create_table 'sales', charset: 'utf8mb4', force: :cascade do |t|
+  t.bigint "company_id", null: false
+  t.bigint "user_id", null: false
+  t.string "unique_id", null: false
+  t.decimal "subtotal", null: false, precision: 50, scale: 2
+  t.decimal "tax_total", null: false, precision: 50, scale: 2
+  t.decimal "total", null: false, precision: 50, scale: 2
+  t.string "tax"
+  t.datetime "updated_at", null: false
+  t.datetime "created_at", null: false
+  t.index [:company_id]
+  t.index [:user_id]
+end
+
+create_table 'sale_items', charset: 'utf8mb4', force: :cascade do |t|
+  t.bigint "sale_id", null: false
+  t.bigint "item_id", null: false
+  t.decimal "price", null: false, precision: 50, scale: 2
+  t.integer "quantity", comment: 'quantity of item bought'
+  t.datetime "updated_at", null: false
+  t.datetime "created_at", null: false
+  t.index [:sale_id]
+  t.index [:item_id]
+end
+
+create_table 'payment_types', charset: 'utf8mb4', force: :cascade do |t|
+  t.string "name"
+  t.datetime "updated_at", null: false
+  t.datetime "created_at", null: false
+end
+
+create_table 'receipt_types', charset: 'utf8mb4', force: :cascade do |t|
+  t.string "name"
+  t.datetime "updated_at", null: false
+  t.datetime "created_at", null: false
+end
+
+create_table 'sale_payments', charset: 'utf8mb4', force: :cascade do |t|
+  t.bigint "sale_id", null: false
+  t.bigint "payment_type_id", null: false
+  t.string "payment_order_id", null: true
+  t.decimal "paid_amount", null: false, precision: 50, scale: 2
+  t.decimal "change_amount", null: true, precision: 50, scale: 2
+  t.decimal "tip_amount", null: true, precision: 50, scale: 2
+  t.datetime "updated_at", null: false
+  t.datetime "created_at", null: false
+  t.index [:sale_id]
+  t.index [:payment_type_id]
+end
+
+create_table 'sale_receipts', charset: 'utf8mb4', force: :cascade do |t|
+  t.bigint "sale_id", null: false
+  t.bigint "receipt_type_id", null: false
+  t.bigint "company_id", null: false
+  t.string "email", null: true
+  t.datetime "updated_at", null: false
+  t.datetime "created_at", null: false
+  t.index [:sale_id]
+  t.index [:receipt_type_id]
+  t.index [:company_id]
+end
+
 add_foreign_key 'users', 'companies'
 add_foreign_key 'users', 'user_authorities'
 add_foreign_key 'pays', 'users'
@@ -120,3 +182,13 @@ add_foreign_key 'item_categories', 'companies'
 add_foreign_key 'items', 'item_categories'
 add_foreign_key 'user_histories', 'users'
 add_foreign_key 'company_histories', 'companies'
+add_foreign_key 'sales', 'companies'
+add_foreign_key 'sales', 'users'
+add_foreign_key 'sale_items', 'sales'
+add_foreign_key 'sale_items', 'items'
+add_foreign_key 'sale_payments', 'sales'
+add_foreign_key 'sale_payments', 'payment_types'
+add_foreign_key 'sale_receipts', 'sales'
+add_foreign_key 'sale_receipts', 'receipt_types'
+add_foreign_key 'sale_receipts', 'companies'
+

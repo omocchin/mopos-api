@@ -99,6 +99,10 @@ GEM
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
     erubi (1.12.0)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-net_http (3.1.0)
+      net-http
     globalid (1.2.1)
       activesupport (>= 6.1)
     grape (1.8.0)
@@ -149,6 +153,8 @@ GEM
     mustermann-grape (1.0.2)
       mustermann (>= 1.0.0)
     mysql2 (0.5.5)
+    net-http (0.4.1)
+      uri
     net-imap (0.3.7)
       date
       net-protocol
@@ -214,6 +220,7 @@ GEM
       activerecord (>= 5.1, < 7.1)
       diffy
     ruby2_keywords (0.0.5)
+    settings_cabinet (0.1.0)
     stringio (3.0.8)
     thor (1.2.2)
     timeout (0.4.0)
@@ -221,6 +228,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2023.3)
       tzinfo (>= 1.0.0)
+    uri (0.13.0)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -237,6 +245,7 @@ DEPENDENCIES
   bootsnap
   debug
   dotenv-rails
+  faraday
   grape
   grape-entity
   jwt
@@ -246,6 +255,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.4, >= 7.0.4.3)
   ridgepole
+  settings_cabinet
   tzinfo-data
 
 RUBY VERSION
