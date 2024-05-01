@@ -34,7 +34,6 @@ module Resources
           optional :quantity, type: Integer
         end
         post do
-          pp params
           ActiveRecord::Base.transaction do
             items = @company.item_categories.flat_map{ |category| category.items }
 					  raise Exceptions::DuplicateEntree.new('Product name already exists', 'name') if items.select{ |item| item.name == params[:name]}.present?

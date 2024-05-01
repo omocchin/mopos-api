@@ -17,6 +17,7 @@ module Resources
       mount Resources::V1::User
       mount Resources::V1::CompanyUser
       mount Resources::V1::Item
+      mount Resources::V1::Cashier
     end
   end
 end
