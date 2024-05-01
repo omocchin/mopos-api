@@ -4,11 +4,11 @@
 #
 #  id                     :bigint           not null, primary key
 #  service_charge_amount  :integer
-#  tax                    :decimal(10, )
+#  tax                    :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  company_id             :bigint           not null
-#  service_charge_type_id :bigint           not null
+#  service_charge_type_id :bigint
 #
 # Indexes
 #

@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: sales
+#
+#  id         :bigint           not null, primary key
+#  subtotal   :decimal(50, 2)   not null
+#  tax        :string(255)
+#  tax_total  :decimal(50, 2)   not null
+#  total      :decimal(50, 2)   not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  company_id :bigint           not null
+#  unique_id  :string(255)      not null
+#  user_id    :bigint           not null
+#
+# Indexes
+#
+#  index_sales_on_company_id  (company_id)
+#  index_sales_on_user_id     (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (company_id => companies.id)
+#  fk_rails_...  (user_id => users.id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

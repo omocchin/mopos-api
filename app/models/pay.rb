@@ -3,7 +3,7 @@
 # Table name: pays
 #
 #  id          :bigint           not null, primary key
-#  hourly_rate :float(24)        not null
+#  hourly_rate :decimal(50, 2)   not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint           not null

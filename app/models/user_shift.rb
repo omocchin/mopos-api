@@ -3,8 +3,8 @@
 # Table name: user_shifts
 #
 #  id         :bigint           not null, primary key
-#  cloack_out :datetime
 #  clock_in   :datetime
+#  clock_out  :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  pay_id     :bigint           not null

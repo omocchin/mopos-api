@@ -3,8 +3,10 @@
 # Table name: items
 #
 #  id               :bigint           not null, primary key
+#  item_code        :string(255)      not null
 #  name             :string(255)      not null
-#  price            :decimal(10, )    not null
+#  price            :decimal(50, 2)   not null
+#  quantity         :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  item_category_id :bigint           not null

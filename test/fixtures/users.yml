@@ -2,18 +2,19 @@
 #
 # Table name: users
 #
-#  id                                  :bigint           not null, primary key
-#  email                               :string(255)
-#  first_name                          :string(255)      not null
-#  last_name                           :string(255)      not null
-#  password_digest                     :string(255)      not null
-#  status(0: logged-out, 1: logged-in) :integer          default("logged_out"), not null
-#  tel                                 :string(255)
-#  created_at                          :datetime         not null
-#  updated_at                          :datetime         not null
-#  company_id                          :bigint           not null
-#  login_id                            :string(255)      not null
-#  user_authority_id                   :bigint           not null
+#  id                                    :bigint           not null, primary key
+#  email                                 :string(255)
+#  first_name                            :string(255)      not null
+#  last_name                             :string(255)      not null
+#  password_digest                       :string(255)      not null
+#  status(0: clocked-out, 1: clocked-in) :integer          default("clocked_out"), not null
+#  tel                                   :string(255)
+#  user_number                           :bigint           not null
+#  created_at                            :datetime         not null
+#  updated_at                            :datetime         not null
+#  company_id                            :bigint           not null
+#  login_id                              :string(255)      not null
+#  user_authority_id                     :bigint           not null
 #
 # Indexes
 #
