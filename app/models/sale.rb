@@ -31,8 +31,8 @@ class Sale < ApplicationRecord
   has_one :sale_receipt, dependent: :nullify
 
   def generate_sale_unique_id
-    last_index = self.company.sales.last&.unique_id&.split('-')&.last || '1'
-    receipt_unique_id = "#{self.company.uuid_last}-#{last_index}"
+    index = self.company.sales.excluding(self).last&.unique_id&.split('-')&.last.to_i + 1 || '1'
+    receipt_unique_id = "#{self.company.uuid_last}-#{index}"
   end
 
   def checkout(user, checkout_info)

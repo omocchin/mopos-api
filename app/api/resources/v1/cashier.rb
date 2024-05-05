@@ -81,6 +81,16 @@ module Resources
             receipt_types = ReceiptType.all
             present receipt_types, with: Entities::V1::CashierEntity::ReceiptTypes
           end
+
+          desc 'get sale info'
+          route_setting :user_auth, disabled: true
+          params do
+            requires :id, type: String
+          end
+          get ':id' do
+            sale = Sale.find(params[:id])
+            present sale, with: Entities::V1::CashierEntity::Sale
+          end
         end
       end
     end

@@ -23,6 +23,15 @@ module Entities
       class Checkout < Grape::Entity
         expose :id
       end
+      class Sale < Grape::Entity
+        expose :id
+        expose :change do |sale|
+          sale.sale_payment.change_amount
+        end
+        expose :payment_type do |sale|
+          sale.sale_payment.payment_type.name
+        end
+      end
     end
   end
 end
