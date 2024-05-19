@@ -64,7 +64,7 @@ class User < ApplicationRecord
   def clock_in_out
     shift = self.user_shifts.last
     if !shift || shift.clock_out.present?
-      self.user_shifts.create(pay_id: self.pay.id, clock_in: Time.zone.now)
+      shift = self.user_shifts.create(pay_id: self.pay.id, clock_in: Time.zone.now)
       self.update(status: User.statuses[:clocked_in])
     else
       shift.update(clock_out: Time.zone.now)

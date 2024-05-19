@@ -58,7 +58,9 @@ class Company < ApplicationRecord
       company_uuid = uuid unless Company.find_by(company_uuid: uuid).present? || Company.all.select { |comp| comp.uuid_last == uuid.split('-').last }.present?
     end
     user_info[:company_uuid] = company_uuid
-    Company.create!(user_info)
+    company =Company.create!(user_info)
+    company.create_setting(service_charge_amount: nil, tax: 10)
+    company
   end
 
   def token_available?(token)
