@@ -11,7 +11,14 @@ default: &default
 
 development:
   <<: *default
-  database: mipos_development
+  database: mopos_development
+  username: root
+  password: password
+  host: db
+
+production:
+  <<: *default
+  database: mopos_production
   username: root
   password: password
   host: db
