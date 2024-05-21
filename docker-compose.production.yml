@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec pumactl start -e production"
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb -p 3001 -e production"
     volumes:
       - .:/app
     ports:
