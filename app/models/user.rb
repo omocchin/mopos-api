@@ -37,6 +37,9 @@ class User < ApplicationRecord
   has_many :items, dependent: :nullify
   has_many :sales, dependent: :nullify
 
+  validates :login_id, uniqueness: true
+  validates :user_number, uniqueness: true
+
   enum :status, { clocked_out: 0, clocked_in: 1 }
 
   scope :search_user, ->(keyword) { 
@@ -52,7 +55,7 @@ class User < ApplicationRecord
   def login(token)
     # self.status = User.statuses[:clocked_out]
     self.user_histories.new.login_history(token)
-    self.save!
+    self.save
   end
 
   def logout(token)

@@ -27,6 +27,9 @@ module Resources
           not_found_error(I18n.t('error_message.user_not_found'))
         rescue ActiveRecord::RecordInvalid => e
           conflict_error(I18n.t('error_message.failed_to_save'))
+        rescue StandardError => e
+          Rails.logger.error e.message
+          conflict_error(I18n.t('error_message.failed_to_save'))
         end
       end
 

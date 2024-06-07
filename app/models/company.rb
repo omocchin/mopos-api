@@ -29,6 +29,9 @@ class Company < ApplicationRecord
   has_many :sales, dependent: :destroy
   has_one :setting, dependent: :destroy
 
+  validates :login_id, uniqueness: true
+  validates :company_uuid, uniqueness: true
+
   enum :status, { logged_out: 0, logged_in: 1 }
 
   def login(token)
@@ -51,7 +54,7 @@ class Company < ApplicationRecord
     end.compact
   end
 
-  def self.create_company_user(user_info)
+  def self.create_company(user_info)
     company_uuid = ''
     while !company_uuid.present? do
       uuid = generate_uuid
